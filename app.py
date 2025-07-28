@@ -6,7 +6,7 @@ import pandas as pd
 
 # Load model, scaler, and column list
 model = joblib.load("model.pkl")
-scaler = joblib.load("scaler.joblib")
+# scaler = joblib.load("scaler.joblib")
 with open("model_columns.json") as f:
     model_columns = json.load(f)
 
@@ -53,8 +53,8 @@ if submit:
 
     # Ensure all columns are present and in correct order
     X = pd.DataFrame([[input_dict.get(col, 0) for col in model_columns]], columns=model_columns)
-    X_scaled = scaler.transform(X)
-    prob = model.predict_proba(X_scaled)[0, 1]
+    # X_scaled = scaler.transform(X)
+    prob = model.predict_proba(X)[0, 1]
     pred = int(prob > 0.5)
 
     # Output
