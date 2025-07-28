@@ -6,9 +6,6 @@ import pandas as pd
 
 # Load model, scaler, and column list
 model = joblib.load("model.pkl")
-# scaler = joblib.load("scaler.joblib")
-with open("model_columns.json") as f:
-    model_columns = json.load(f)
 
 st.set_page_config(page_title="FraudGuard", page_icon="🛡️")
 st.title("🛡️ FraudGuard")
