@@ -6,6 +6,7 @@ import pandas as pd
 
 # Load model, scaler, and column list
 model = joblib.load("model.pkl")
+model_columns=["step", "amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest", "balance_change", "type_CASH_OUT", "type_DEBIT", "type_PAYMENT", "type_TRANSFER"]
 
 st.set_page_config(page_title="FraudGuard", page_icon="🛡️")
 st.title("🛡️ FraudGuard")
@@ -44,7 +45,6 @@ if submit:
     for t in ["CASH_IN", "CASH_OUT", "DEBIT", "PAYMENT", "TRANSFER"]:
         input_dict[f"type_{t}"] = 1 if transfer_type == t else 0
         
-    model_columns=[["step", "amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest", "balance_change", "type_CASH_OUT", "type_DEBIT", "type_PAYMENT", "type_TRANSFER"]]
 
     # If model uses balance_change, compute it
     if "balance_change" in model_columns:
